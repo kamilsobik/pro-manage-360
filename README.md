@@ -1,5 +1,10 @@
 <h1>Pro Manage 360</h1>
-<hr><p>Company management system - comprehensive solutions for managing all aspects of management</p><h2>Technologies Used</h2>
+<hr><p>Company management system - comprehensive solutions for managing all aspects of management</p>
+<h2>Demo</h2>
+<hr><ul>
+<li><a href="https://pro-manage-360.vercel.app/">Live version of Pro Manage 360</a></li></ul><ul>
+</ul>
+<h2>Technologies Used</h2>
 <hr><ul>
 <li>HTML</li>
 </ul><ul>
