@@ -1,11 +1,11 @@
 import "./App.css";
+import Header from "./partials/Header";
 
 function App() {
   return (
     <>
-      <p>Pro Manage 360</p>
+      <Header />
     </>
   );
 }
-
 export default App;
