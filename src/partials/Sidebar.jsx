@@ -29,7 +29,7 @@ const Sidebar = () => {
     { title: "Open requests", icon: BsFillPencilFill },
     { title: "Close request", icon: FaWindowClose },
     { title: "KPI", icon: BsGraphUpArrow },
-    { title: "Settings", shortTitle: "MT", group: true, gap: true },
+    { title: "Settings", shortTitle: "ST", group: true, gap: true },
     { title: "App settings", icon: FiSettings },
   ];
 
