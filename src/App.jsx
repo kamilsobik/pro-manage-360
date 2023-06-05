@@ -1,4 +1,4 @@
-import "./App.css";
+import "./css/index.css";
 import Sidebar from "./partials/Sidebar";
 import Header from "./partials/Header";
 import Main from "./partials/HomePage";
