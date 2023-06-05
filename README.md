@@ -26,6 +26,6 @@
 </ul><ul>
 <li><code>npm run dev</code></li>
 </ul><ul>
-<li>Visit your app at <a href="http://localhost:3000">http://localhost:3000</a>.</li>
+<li>Visit your app at <a href="http://localhost:5173/">http://localhost:5173/</a>.</li>
 </ul><h2>Project Status</h2>
 <hr><p>In progress...</p>
