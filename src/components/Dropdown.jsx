@@ -9,13 +9,13 @@ export default function Dropdown() {
     <div className="relative inline-flex">
       <Menu as="div" className="relative inline-block text-left">
         <div className="relative inline-flex">
-          <Menu.Button className="inline-flex  w-56 justify-center rounded-md bg-white bg-opacity-20 px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex  w-56 justify-center rounded-md bg-white bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-opacity-75">
             <img
               className="w-8 h-8 rounded-full"
               src={UserAvatar}
               width="32"
               height="32"
-              alt="User"
+              alt="User avatar"
             />
             <div className="flex items-center truncate">
               <span className="truncate ml-5 text-sm font-medium group-hover:text-slate-800">

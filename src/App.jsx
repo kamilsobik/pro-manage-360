@@ -1,11 +1,11 @@
 import "./App.css";
-import Header from "./partials/Header";
+import Sidebar from "./partials/Sidebar";
 
 function App() {
   return (
-    <>
-      <Header />
-    </>
+    <div className="w-screen h-screen">
+      <Sidebar />
+    </div>
   );
 }
 export default App;
