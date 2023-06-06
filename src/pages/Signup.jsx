@@ -104,7 +104,6 @@ function Signup() {
                   </p>
                 </div>
               </form>
-              {/* Footer */}
               <div className="pt-5 mt-6 border-t border-slate-200">
                 <div className="text-sm">
                   Have an account?
