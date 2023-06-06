@@ -69,9 +69,13 @@ function Signin() {
               <div className="pt-5 mt-6 border-t border-slate-200">
                 <div className="text-sm">
                   Don’t you have an account?
-                  <p className="font-medium text-indigo-500 hover:text-indigo-600 cursor-pointer">
+                  <a
+                    className="font-medium text-indigo-500 hover:text-indigo-600 cursor-pointer"
+                    href="/signup"
+                  >
+                    {" "}
                     Sign Up
-                  </p>
+                  </a>
                 </div>
               </div>
             </div>

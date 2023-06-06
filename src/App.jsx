@@ -1,7 +1,7 @@
-import { Outlet, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./css/index.css";
 
-import HomePage from "./partials/HomePage";
+import HomePage from "./pages/HomePage";
 import NotFound from "./utils/NotFound";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
