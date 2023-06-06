@@ -1,24 +1,25 @@
+import { Outlet, Route, Routes } from "react-router-dom";
 import "./css/index.css";
-import Sidebar from "./partials/Sidebar";
-import Header from "./partials/Header";
-import Main from "./partials/HomePage";
+
+import HomePage from "./partials/HomePage";
+import NotFound from "./utils/NotFound";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
-import NotFound from "./utils/NotFound";
+import Layout from "./pages/Layout";
 
 function App() {
   return (
-    // <div className="w-screen h-screen flex">
-    //   <Sidebar />
-    //   <div className="h-screen flex-1">
-    //     <Header />
-    //     <div className="justify-center items-center">
-    //       <Main />
-    //     </div>
-    //   </div>
-    // </div>
-    // <Signup />
-    <NotFound />
+    <>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route path="/" element={<HomePage />} />
+        </Route>
+        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 }
+
 export default App;

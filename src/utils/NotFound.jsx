@@ -34,7 +34,7 @@ const NotFound = () => {
                     </p>
                     <a
                       rel="noopener noreferrer"
-                      href="#"
+                      href="/"
                       className="px-8 py-3 font-semibold rounded  bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap cursor-pointer"
                     >
                       Back to homepage
@@ -49,7 +49,7 @@ const NotFound = () => {
             aria-hidden="true"
           >
             <img
-              className="object-cover object-center w-full h-full duration-1000 hover:rotate-[360deg]"
+              className="object-cover object-center w-full h-full  duration-1000 hover:rotate-[360deg]"
               src={Logo}
               width="760"
               height="1024"
