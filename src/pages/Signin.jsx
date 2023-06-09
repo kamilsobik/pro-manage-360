@@ -1,6 +1,25 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
 import Logo from "../images/logo.svg";
+import { auth } from "../utils/firebase";
+import { useNavigate } from "react-router-dom";
 
 function Signin() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const signIn = (e) => {
+    e.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  };
+
   return (
     <main className="bg-white">
       <div className="relative md:flex">
@@ -22,7 +41,7 @@ function Signin() {
               <h1 className="text-3xl text-slate-800 font-bold mb-6">
                 Welcome back in our app
               </h1>
-              <form>
+              <form onSubmit={signIn}>
                 <div className="space-y-4">
                   <div>
                     <label
@@ -33,6 +52,8 @@ function Signin() {
                     </label>
                     <input
                       id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="form-input w-full"
                       type="email"
                       autoComplete="on"
@@ -48,6 +69,8 @@ function Signin() {
                     </label>
                     <input
                       id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="form-input w-full"
                       type="password"
                       autoComplete="on"
@@ -61,9 +84,12 @@ function Signin() {
                       Forgot Password?
                     </p>
                   </div>
-                  <p className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 cursor-pointer">
+                  <button
+                    type="submit"
+                    className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 cursor-pointer"
+                  >
                     Sign In
-                  </p>
+                  </button>
                 </div>
               </form>
               <div className="pt-5 mt-6 border-t border-slate-200">
