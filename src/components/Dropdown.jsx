@@ -1,15 +1,36 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { AiOutlineCaretDown } from "react-icons/ai";
 import { Menu, Transition } from "@headlessui/react";
+import { getAuth, signOut } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 
 import UserAvatar from "../images/user-avatar-01.jpg";
 
 export default function Dropdown() {
+  const navigate = useNavigate();
+  const [user, setUser] = useState("");
+
+  useEffect(() => {
+    const auth = getAuth();
+    setUser(auth.currentUser);
+  }, []);
+
+  const userSignOut = () => {
+    const auth = getAuth();
+    signOut(auth)
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  };
+
   return (
     <div className="relative inline-flex">
       <Menu as="div" className="relative inline-block text-left">
         <div className="relative inline-flex">
-          <Menu.Button className="inline-flex  w-56 justify-center rounded-md bg-white bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-opacity-75">
+          <Menu.Button className="inline-flex  w-fit justify-center rounded-md bg-white bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-opacity-75">
             <img
               className="w-8 h-8 rounded-full"
               src={UserAvatar}
@@ -123,6 +144,7 @@ export default function Dropdown() {
               <Menu.Item>
                 {({ active }) => (
                   <button
+                    onClick={userSignOut}
                     className={`${
                       active ? "bg-violet-500 text-white" : "text-gray-900"
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
