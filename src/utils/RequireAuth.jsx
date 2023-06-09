@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged, getAuth } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { FaSpinner } from "react-icons/fa";
+import Loader from "../components/Loader";
 
 const RequireAuth = ({ children }) => {
   const [authenticated, setAuthenticated] = useState(null);
@@ -30,7 +30,7 @@ const RequireAuth = ({ children }) => {
   if (!authenticated && loading) {
     return (
       <p>
-        <FaSpinner />
+        <Loader />
       </p>
     );
   }
