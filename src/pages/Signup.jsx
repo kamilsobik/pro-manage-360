@@ -1,6 +1,25 @@
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { auth } from "../utils/firebase";
 import Logo from "../images/logo.svg";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const navigate = useNavigate();
+
+  const signUp = (e) => {
+    e.preventDefault();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then(() => {
+        navigate("/signin");
+      })
+      .catch((error) => {
+        throw new Error(error);
+      });
+  };
+
   return (
     <main className="bg-white">
       <div className="relative md:flex">
@@ -22,7 +41,7 @@ function Signup() {
               <h1 className="text-3xl  text-slate-800 font-bold mb-6">
                 Create your Account
               </h1>
-              <form>
+              <form onSubmit={signUp}>
                 <div className="space-y-4">
                   <div>
                     <label
@@ -33,8 +52,12 @@ function Signup() {
                     </label>
                     <input
                       id="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="form-input w-full"
                       type="email"
+                      autoComplete="on"
+                      placeholder="Your email address"
                     />
                   </div>
                   <div>
@@ -48,6 +71,8 @@ function Signup() {
                       id="name"
                       className="form-input w-full"
                       type="text"
+                      autoComplete="on"
+                      placeholder="Your full name"
                     />
                   </div>
                   <div>
@@ -80,9 +105,12 @@ function Signup() {
                     </label>
                     <input
                       id="password"
+                      value={password}
+                      onChange={(e) => setPassword(e.target.value)}
                       className="form-input w-full"
                       type="password"
                       autoComplete="on"
+                      placeholder="Your password"
                     />
                   </div>
                 </div>
@@ -96,12 +124,12 @@ function Signup() {
                       <span className="text-sm ml-2">Email me about news</span>
                     </label>
                   </div>
-                  <p
+                  <button
+                    type="submit"
                     className="btn bg-indigo-500 hover:bg-indigo-600 text-white ml-3 whitespace-nowrap cursor-pointer"
-                    to="/"
                   >
                     Sign Up
-                  </p>
+                  </button>
                 </div>
               </form>
               <div className="pt-5 mt-6 border-t border-slate-200">
