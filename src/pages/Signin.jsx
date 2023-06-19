@@ -143,6 +143,7 @@ function Signin() {
                     className="font-medium text-indigo-500 hover:text-indigo-600 cursor-pointer"
                     href="/signup"
                   >
+                    {" "}
                     Sign Up
                   </a>
                 </div>

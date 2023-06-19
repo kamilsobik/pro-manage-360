@@ -3,11 +3,43 @@ import { useState } from "react";
 import { auth } from "../utils/firebase";
 import Logo from "../images/logo.svg";
 import { useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { BiErrorAlt } from "react-icons/bi";
 
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const notify = (errorMessage) =>
+    toast.custom((t) => (
+      <div
+        className={`${
+          t.visible ? "animate-enter" : "animate-leave"
+        } max-w-md w-full bg-red-200 shadow-lg rounded-lg pointer-events-auto flex ring-1 ring-black ring-opacity-5`}
+      >
+        <div className="flex-1 w-0 p-4">
+          <div className="flex items-start">
+            <div className="flex pt-0.5 text-red-600  text-lg font-medium">
+              <BiErrorAlt />
+            </div>
+            <div className="ml-3 flex-1">
+              <p className="text-sm font-medium text-gray-900">
+                {errorMessage}
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="flex border-l border-gray-200">
+          <button
+            onClick={() => toast.dismiss(t.id)}
+            className="w-full border border-transparent rounded-none rounded-r-lg p-4 flex items-center justify-center text-sm font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    ));
 
   const signUp = (e) => {
     e.preventDefault();
@@ -16,6 +48,13 @@ function Signup() {
         navigate("/signin");
       })
       .catch((error) => {
+        if (error.code === "auth/weak-password") {
+          notify("Password should be at least 6 characters.");
+        } else if (error.code === "auth/email-already-in-use") {
+          notify(
+            "The user of this email address is already registered. Try to sign in."
+          );
+        } else notify(error.message);
         throw new Error(error);
       });
   };
@@ -27,6 +66,7 @@ function Signup() {
           <div className="min-h-screen h-full flex flex-col after:flex-1">
             <div className="flex-1">
               <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
+                <Toaster position="top-center" reverseOrder={false} />
                 <p className="block" to="/">
                   <img
                     src={Logo}
@@ -74,27 +114,6 @@ function Signup() {
                       autoComplete="on"
                       placeholder="Your full name"
                     />
-                  </div>
-                  <div>
-                    <label
-                      className="block text-sm font-medium mb-1 "
-                      htmlFor="role"
-                    >
-                      Your Role <span className="text-rose-500">*</span>
-                    </label>
-                    <select
-                      id="role"
-                      className="form-select w-full cursor-pointer"
-                    >
-                      <option>Admin</option>
-                      <option>Human Resources - manager</option>
-                      <option>Human Resources - spacialist</option>
-                      <option>Logistic - manager</option>
-                      <option>Logistic - spacialist</option>
-                      <option>Maintanance - manager</option>
-                      <option>Maintanance - spacialist</option>
-                      <option>Intern</option>
-                    </select>
                   </div>
                   <div>
                     <label
@@ -148,15 +167,15 @@ function Signup() {
           </div>
         </div>
         <div
-          className="hidden md:block absolute top-0 bottom-0 right-0 md:w-1/2"
+          className="flex items-center justify-between mt-6"
           aria-hidden="true"
         >
           <img
-            className="object-cover object-center w-full h-full duration-1000 hover:rotate-[360deg]"
+            className="object-cover object-center align-middle max-w-full max-h-full m-5 duration-1000 hover:rotate-[360deg]"
             src={Logo}
-            width="760"
-            height="1024"
-            alt="Authentication"
+            width="700"
+            height="700"
+            alt="Animated blue and red logo - rotates 360 degrees"
           />
         </div>
       </div>
