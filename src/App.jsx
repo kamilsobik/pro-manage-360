@@ -6,12 +6,20 @@ import NotFound from "./utils/NotFound";
 import Signin from "./pages/Signin";
 import Signup from "./pages/Signup";
 import Layout from "./pages/Layout";
+import RequireAuth from "./utils/RequireAuth";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />}>
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Layout />
+            </RequireAuth>
+          }
+        >
           <Route path="/" element={<HomePage />} />
         </Route>
         <Route path="/signin" element={<Signin />} />
